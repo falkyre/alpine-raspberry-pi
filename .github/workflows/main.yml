@@ -1,7 +1,24 @@
-name: Create rpi scoreboard alpine linux img
+name: Build rpi-alpine image
 
 on:
   workflow_dispatch:
+  
+    inputs:
+         arch:
+          type: choice
+          required: true
+          description: RPI Architecture
+          options: 
+          - armhf
+          - aarch64
+         version:
+           description: 'Version Release'
+           required: true
+           default: 'v1.6.0'
+         detail:
+           description: 'Extra Notes'
+           required: false
+           default: 'Excelsior!'
 
 jobs:
   build:
@@ -11,7 +28,7 @@ jobs:
 
     - run: |
         docker build runner -t runner
-        docker run --privileged --rm -v /dev:/dev:ro -v "$PWD":/runner -w /runner -e ALPINE_BRANCH=edge -e ALPINE_MIRROR="http://dl-cdn.alpinelinux.org/alpine" -e ARCH=armhf runner ./make-image
+        docker run --privileged --rm -v /dev:/dev:ro -v "$PWD":/runner -w /runner -e ALPINE_BRANCH=edge -e ALPINE_MIRROR="http://dl-cdn.alpinelinux.org/alpine" -e ARCH=${{ github.event.inputs.arch }} runner ./make-image
 
     - env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
