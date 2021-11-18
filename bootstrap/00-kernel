@@ -2,8 +2,8 @@
 
 set -xe
 
-#apk add linux-rpi linux-rpi4 raspberrypi-bootloader zram-init
-apk add linux-rpi raspberrypi-bootloader zram-init
+apk add linux-rpi linux-rpi4 raspberrypi-bootloader zram-init
+#apk add linux-rpi raspberrypi-bootloader zram-init
 rc-update add zram-init boot
 
 echo "modules=loop,squashfs,sd-mod,usb-storage root=/dev/mmcblk0p2 rootfstype=ext4 elevator=deadline fsck.repair=yes console=tty1 rootwait quiet iomem=relaxed" > /boot/cmdline.txt
