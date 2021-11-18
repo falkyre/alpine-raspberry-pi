@@ -4,11 +4,11 @@ set -xe
 
 # Add the dependencies for the scoreboard
 
-echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
+echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
 apk add --no-cache -Uu --virtual .build-dependencies python3-dev libffi-dev openssl-dev build-base musl
 apk add --no-cache alpine-sdk
 apk add --no-cache git py3-pip py3-setuptools
-apk add --no-cache py3-dateutil py3-numpy py3-pillow py3-rpigpio py3-lxml py3-libxml2 py3-aiohttp py3-paho-mqtt py3-gpiozero py3-cairosvg py3-regex py3-geocoder
+apk add --no-cache py3-dateutil py3-numpy py3-pillow py3-rpigpio py3-lxml py3-libxml2 py3-aiohttp py3-paho-mqtt py3-cairosvg py3-regex py3-geocoder
 
 #For compiling the led-image-viewer binary
 apk add --no-cache graphicsmagick-dev
