@@ -1,3 +1,5 @@
+name: Create rpi scoreboard alpine linux img
+
 on:
   workflow_dispatch:
 
