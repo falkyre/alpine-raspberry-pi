@@ -49,5 +49,5 @@ make install-python PYTHON="$(command -v python3)"
 #cd bindings/
 #pip3 install --no-cache-dir --force-reinstall -e python/
 
-cd ../submodules/matrix/utils
+cd /home/pi/nhl-led-scoreboard/submodules/matrix/utils
 make led-image-viewer
