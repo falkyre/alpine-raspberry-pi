@@ -1,0 +1,53 @@
+#!/bin/sh
+
+set -xe
+
+# Add the dependencies for the scoreboard
+
+echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
+apk add --no-cache -Uu --virtual .build-dependencies python3-dev libffi-dev openssl-dev build-base musl
+apk add --no-cache alpine-sdk
+apk add --no-cache git py3-pip py3-setuptools
+apk add --no-cache py3-dateutil py3-numpy py3-pillow py3-rpigpio py3-lxml py3-libxml2 py3-aiohttp py3-paho-mqtt py3-gpiozero py3-cairosvg py3-regex py3-geocoder
+
+#For compiling the led-image-viewer binary
+apk add --no-cache graphicsmagick-dev
+apk add --no-cache freetype-dev
+apk add --no-cache xz-dev
+
+# For sb-tools
+apk add --no-cache zsh
+apk add --no-cache wgetpaste pastebinc
+apk add --no-cache jq
+
+
+# Do the compiling
+cd /home/pi
+
+git clone https://github.com/falkyre/nhl-led-scoreboard.git
+
+cd nhl-led-scoreboard
+
+git checkout alpine-linux
+
+# Install python requirememts
+
+pip3 install --no-cache-dir -r requirements.txt
+
+git submodule update --init --recursive
+git config submodule.matrix.ignore all
+
+cd submodules/matrix
+
+python3 -m pip install --no-cache-dir cython
+cd bindings/python/rgbmatrix/
+python3 -m cython -2 --cplus *.pyx
+cd ../../..
+make build-python PYTHON="$(command -v python3)"
+make install-python PYTHON="$(command -v python3)"
+cd bindings/
+
+pip3 install --no-cache-dir --force-reinstall -e python/
+
+cd ../submodules/matrix/utils
+make led-image-viewer

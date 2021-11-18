@@ -3,7 +3,7 @@
 set -xe
 
 FIRST_USER_NAME=pi
-FIRST_USER_PASS=raspberry
+FIRST_USER_PASS=scoreboard
 
 apk add sudo
 

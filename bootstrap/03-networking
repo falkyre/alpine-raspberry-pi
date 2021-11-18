@@ -27,12 +27,12 @@ auto wlan0
 iface wlan0 inet dhcp
   up iwconfig wlan0 power off
   
-hostname raspberrypi  
+hostname scoreboard  
 EOF
 
 # avahi
 apk add dbus avahi
 
 # bluetooth
-apk add bluez bluez-deprecated
-sed -i '/bcm43xx/s/^#//' /etc/mdev.conf
+#apk add bluez bluez-deprecated
+#sed -i '/bcm43xx/s/^#//' /etc/mdev.conf
