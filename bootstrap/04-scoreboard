@@ -45,9 +45,9 @@ python3 -m cython -2 --cplus *.pyx
 cd ../../..
 make build-python PYTHON="$(command -v python3)"
 make install-python PYTHON="$(command -v python3)"
-cd bindings/
 
-pip3 install --no-cache-dir --force-reinstall -e python/
+#cd bindings/
+#pip3 install --no-cache-dir --force-reinstall -e python/
 
 cd ../submodules/matrix/utils
 make led-image-viewer
