@@ -9,6 +9,9 @@ rc-update add zram-init boot
 echo "modules=loop,squashfs,sd-mod,usb-storage root=/dev/mmcblk0p2 rootfstype=ext4 elevator=deadline fsck.repair=yes console=tty1 rootwait quiet iomem=relaxed" > /boot/cmdline.txt
 
 cat <<EOF > /boot/config.txt
+[pi02]
+kernel=vmlinuz-rpi
+initramfs initramfs-rpi
 [pi3]
 kernel=vmlinuz-rpi
 initramfs initramfs-rpi
