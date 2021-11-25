@@ -2,7 +2,7 @@
 
 set -xe
 
-apk add wpa_supplicant wireless-tools wireless-regdb iw
+apk add linux-firmware-cypress wpa_supplicant wireless-tools wireless-regdb iw
 sed -i 's/wpa_supplicant_args=\"/wpa_supplicant_args=\" -u -Dwext,nl80211/' /etc/conf.d/wpa_supplicant
 
 echo -e 'brcmfmac' >> /etc/modules
