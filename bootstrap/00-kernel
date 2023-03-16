@@ -2,7 +2,9 @@
 
 set -xe
 
-apk add linux-rpi linux-rpi4 raspberrypi-bootloader zram-init
+apk add --update linux-rpi linux-rpi4 raspberrypi-bootloader zram-init openrc
+#apk add linux-rpi linux-rpi4 raspberrypi-bootloader zram-init
+
 #apk add linux-rpi raspberrypi-bootloader zram-init
 rc-update add zram-init boot
 
