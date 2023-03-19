@@ -2,7 +2,7 @@
 
 set -xe
 
-apk add --update linux-rpi linux-rpi4 raspberrypi-bootloader zram-init openrc busybox-openrc chrony chrony-openrc
+apk add --update linux-rpi linux-rpi4 raspberrypi-bootloader zram-init alpine-conf openrc busybox-openrc chrony chrony-openrc
 #apk add linux-rpi linux-rpi4 raspberrypi-bootloader zram-init
 
 #apk add linux-rpi raspberrypi-bootloader zram-init
