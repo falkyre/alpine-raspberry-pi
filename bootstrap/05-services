@@ -2,7 +2,7 @@
 
 set -xe
 
-apk add eudev openssh haveged
+apk add eudev openssh haveged chrony chrony-openrc
 
 for service in devfs dmesg; do
 	rc-update add $service sysinit
@@ -16,7 +16,7 @@ for service in dbus haveged sshd chronyd local networking avahi-daemon wpa_suppl
 	rc-update add $service default
 done
 
-#setup-devd udev
+setup-devd udev
 
 for service in mount-ro killprocs savecache; do
 	rc-update add $service shutdown
